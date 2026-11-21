@@ -1,7 +1,7 @@
 import re
 from datetime import date
 from decimal import Decimal
-from typing import Optional
+
 from uuid import UUID
 
 from pydantic import BaseModel, Field, field_validator
@@ -20,7 +20,7 @@ class LoanStatementRequestDto(BaseModel):
     term: int = Field(..., ge=6)
     firstName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
     lastName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
-    middleName: Optional[str] = Field(default=None, min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
+    middleName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
     email: str
     birthdate: date
     passportSeries: str = Field(..., pattern=r"^\d{4}$")
@@ -55,7 +55,7 @@ class ScoringDataDto(BaseModel):
     term: int = Field(..., ge=6)
     firstName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
     lastName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
-    middleName: Optional[str] = Field(default=None, min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
+    middleName: str = Field(..., min_length=2, max_length=30, pattern=r"^[a-zA-Zа-яА-ЯёЁ]+$")
     birthdate: date
     passportSeries: str = Field(..., pattern=r"^\d{4}$")
     passportNumber: str = Field(..., pattern=r"^\d{6}$")
