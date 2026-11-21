@@ -1,8 +1,8 @@
 import logging
 from fastapi import APIRouter
 
-from app.models import CreditDto, LoanOfferDto, LoanStatementRequestDto, ScoringDataDto
-from app.service import calculate_credit, generate_offers
+from app.schemas.models import CreditDto, LoanOfferDto, LoanStatementRequestDto, ScoringDataDto
+from app.services.calculator import calculate_credit, generate_offers
 
 logger = logging.getLogger("calculator")
 

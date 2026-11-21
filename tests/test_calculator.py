@@ -6,15 +6,15 @@ from uuid import uuid4
 
 from pydantic import ValidationError
 
-from main import app
-from app.models import (
+from app.main import app
+from app.schemas.models import (
     CreditDto,
     LoanOfferDto,
     LoanStatementRequestDto,
     ScoringDataDto,
 )
-from app.router import calc_credit, get_offers
-from app.service import (
+from app.api.router import calc_credit, get_offers
+from app.services.calculator import (
     add_months,
     calculate_credit,
     calculate_monthly_payment,
@@ -141,7 +141,7 @@ def test_router_get_offers_with_mock():
         isInsuranceEnabled=False,
         isSalaryClient=False,
     )
-    with patch("app.router.generate_offers", return_value=[mock_offer]) as mocked:
+    with patch("app.api.router.generate_offers", return_value=[mock_offer]) as mocked:
         result = get_offers(request)
         mocked.assert_called_once_with(request)
         assert len(result) == 1
@@ -160,7 +160,7 @@ def test_router_calc_credit_with_mock():
         isSalaryClient=True,
         paymentSchedule=[],
     )
-    with patch("app.router.calculate_credit", return_value=mock_credit) as mocked:
+    with patch("app.api.router.calculate_credit", return_value=mock_credit) as mocked:
         result = calc_credit(request)
         mocked.assert_called_once_with(request)
         assert result.rate == Decimal("11.00")

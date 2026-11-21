@@ -4,8 +4,8 @@ from datetime import date
 from decimal import Decimal, ROUND_HALF_UP
 from uuid import uuid4
 
-from app.config import BASE_RATE, INSURANCE_COST, INSURANCE_DISCOUNT, SALARY_DISCOUNT
-from app.models import (
+from app.core.config import BASE_RATE, INSURANCE_COST, INSURANCE_DISCOUNT, SALARY_DISCOUNT
+from app.schemas.models import (
     CreditDto,
     LoanOfferDto,
     LoanStatementRequestDto,

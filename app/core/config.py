@@ -3,7 +3,7 @@ from decimal import Decimal
 from pathlib import Path
 
 config = configparser.ConfigParser()
-config_path = Path(__file__).resolve().parent.parent / "config.ini"
+config_path = Path(__file__).resolve().parent.parent.parent / "config.ini"
 config.read(config_path)
 
 BASE_RATE = Decimal(config.get("calculator", "base_rate", fallback="15.0"))
